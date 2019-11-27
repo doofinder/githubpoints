@@ -52,12 +52,18 @@ var updatePoints = function () {
   for (let count = 0; count < columns.length; count++) {
     let total = 0;
     let column = columns[count];
-    let point_marks = column.getElementsByClassName('issue-points');
     let column_name = column.getElementsByClassName('js-project-column-name')[0].innerHTML;
-    for (let j = 0; j < point_marks.length; j++) {
-      total += parseInt(point_marks[j].textContent);
+    let articles = column.getElementsByTagName('article')
+    for (let j = 0; j < articles.length; j++) {
+      // only sum if visible
+      if (!articles[j].classList.contains('d-none')) {
+        point_marks = articles[j].getElementsByClassName('issue-points')[0];
+        if (point_marks){
+          total += parseInt(point_marks.textContent);
+        }
+      }
     }
-    let header = column.getElementsByTagName('h4')[0];
+    let header = column.getElementsByTagName('h3')[0];
     let column_points = header.getElementsByClassName('column-points');
     if (column_points.length > 0) {
       column_points[0].innerHTML = total;
