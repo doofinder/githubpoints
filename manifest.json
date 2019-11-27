@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "GithubPoints",
+  "version": "1.1.2",
+
+  "description": "Adds points and summary to the Github Project page",
+
+  "author": "José Carlos Cuevas",
+
+  "applications": {
+      "gecko": {
+          "id": "githubpoints@doofinder.com"
+      }
+  },
+
+  "icons": {
+    "48": "icons/githubpoints-48.png"
+  },
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; font-src 'self';",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.github.com/*/projects/*"],
+      "js": ["githubpoints-projects.js"],
+      "css": ["githubpoints.css"]
+    }
+  ]
+
+}
